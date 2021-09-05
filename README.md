@@ -16,9 +16,18 @@ Run `npm i @rbxts/ccdik-controller` in your project directory.
 <h2>Usage</h2>
 
 ```ts
-import CCDIKController from "@rbxts/ccdik-controller";
+import CCDIKController, { ConstraintsValue } from "@rbxts/ccdik-controller";
 
-const ikController = new CCDIKController([motor1, motor2, motor3]);
+// optional constraints parameter
+const constraints = new Map<Motor6D, ConstraintsValue>();
+constraints.set(new Instance("Motor6D"), {
+	ConstraintType: "Hinge",
+	LowerAngle: 5,
+	UpperAngle: 10,
+	AxisAttachment: "foo",
+	JointAttachment: "baz",
+});
+const ikController = new CCDIKController([motor1, motor2, motor3], constraints);
 
 ikController.CCDIKIterateUntil(new Vector3(5, 5, 5));
 ```

@@ -1,15 +1,11 @@
 {
 	"name": "@rbxts/ccdik-controller",
-	"version": "1.0.1-ts1",
+	"version": "1.0.1-ts2",
 	"description": "Alternate inverse kinematics method for Roblox Motor6D rigs. roblox-ts typings for datlass's CCDIK Controller.",
 	"homepage": "https://datlass.github.io/Rbx-CCDIK/",
 	"repository": "github:tacheometry/rbxts-ccdik-controller",
-	"main": "out/init.lua",
-	"scripts": {
-		"build": "rbxtsc",
-		"watch": "rbxtsc -w",
-		"prepublishOnly": "npm run build"
-	},
+	"main": "src/init.lua",
+	"scripts": {},
 	"keywords": [
 		"roblox-ts",
 		"roblox",
@@ -17,10 +13,9 @@
 	],
 	"author": "tacheometry",
 	"license": "MIT",
-	"types": "out/index.d.ts",
+	"types": "src/index.d.ts",
 	"files": [
-		"out",
-		"!**/*.tsbuildinfo"
+		"src"
 	],
 	"publishConfig": {
 		"access": "public"

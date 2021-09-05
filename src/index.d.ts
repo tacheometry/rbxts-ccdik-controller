@@ -1,29 +1,51 @@
-type ConstraintsValue =
-	| {
-			ConstraintType: "Hinge";
-			UpperAngle: number;
-			LowerAngle: number;
-			AxisAttachment: Attachment;
-			JointAttachment: Attachment;
-	  }
-	| {
-			ConstraintType: "BallSocketConstraint";
-			UpperAngle: number;
-			TwistLimitsEnabled: boolean;
-			TwistUpperAngle: number;
-			TwistLowerAngle: number;
-			AxisAttachment: Attachment;
-			JointAttachment: Attachment;
-	  };
+declare namespace CCDIKController {
+	export type ConstraintsValue =
+		| {
+				ConstraintType: "Hinge";
+				UpperAngle: number;
+				LowerAngle: number;
+				AxisAttachment: Attachment | string;
+				JointAttachment: Attachment | string;
+		  }
+		| {
+				ConstraintType: "BallSocketConstraint";
+				UpperAngle: number;
+				TwistLimitsEnabled: boolean;
+				TwistUpperAngle: number;
+				TwistLowerAngle: number;
+				AxisAttachment: Attachment | string;
+				JointAttachment: Attachment | string;
+		  };
+}
 
 interface CCDIKControllerConstructor {
 	new (
 		Motor6DTable: Motor6D[],
-		Constraints?: Map<Motor6D, ConstraintsValue>
+		Constraints?: Map<Motor6D, CCDIKController.ConstraintsValue>
 	): CCDIKController;
 }
 interface CCDIKController {
-	Constraints: Map<Motor6D, ConstraintsValue> | undefined;
+	Constraints:
+		| Map<
+				Motor6D,
+				| {
+						ConstraintType: "Hinge";
+						UpperAngle: number;
+						LowerAngle: number;
+						AxisAttachment: Attachment;
+						JointAttachment: Attachment;
+				  }
+				| {
+						ConstraintType: "BallSocketConstraint";
+						UpperAngle: number;
+						TwistLimitsEnabled: boolean;
+						TwistUpperAngle: number;
+						TwistLowerAngle: number;
+						AxisAttachment: Attachment;
+						JointAttachment: Attachment;
+				  }
+		  >
+		| undefined;
 	LerpMode: boolean;
 	LerpAlpha: number;
 	ConstantLerpSpeed: boolean;
@@ -48,6 +70,5 @@ interface CCDIKController {
 	InitDragDebug(): void;
 }
 
-declare const CCDIK: CCDIKControllerConstructor;
-
-export = CCDIK;
+declare const CCDIKController: CCDIKControllerConstructor;
+export = CCDIKController;
