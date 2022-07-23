@@ -68,6 +68,7 @@ interface CCDIKController {
 		raycastParams: RaycastParams
 	): void;
 	InitDragDebug(): void;
+	Destroy(): void;
 }
 
 declare const CCDIKController: CCDIKControllerConstructor;
